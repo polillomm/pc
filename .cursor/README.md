@@ -9,10 +9,12 @@ Text here.
 ## Commands
 Text here.
 
+_*Some commands were inspired by [github/spec-kit](https://github.com/github/spec-kit).*_
+
 ## Rules
 Overview of all rules organized by responsibility.
 
-_*Some rules were inspired by the `AGENTS.md` from the [goinfinite/tk](https://github.com/goinfinite/tk/blob/main/docs/AGENTS.md) repository.*_ 
+_*Some rules were inspired by the `AGENTS.md` from the [goinfinite/tk](https://github.com/goinfinite/tk/blob/main/docs/AGENTS.md).*_ 
 
 ### File Structure
 | File | Purpose | When Applied | Description |
