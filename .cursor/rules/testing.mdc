@@ -1,0 +1,7 @@
+---
+name: testing
+description: Testing guidelines for this codebase. Apply these rules when writing, refactoring, or reviewing unit tests, integration tests, or test infrastructure.
+alwaysApply: false
+---
+
+- Unit tests error messages SHOULD be descriptive and provide context about what operation failed, what was expected, and help with debugging.

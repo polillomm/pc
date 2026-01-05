@@ -1,0 +1,25 @@
+---
+name: code-style
+description: Code style and formatting rules for this codebase. Apply these rules to all code generation, refactoring, or formatting across TypeScript, JavaScript, configuration files, and documentation.
+alwaysApply: false
+---
+
+- Method names SHOULD focus on the conceptual purpose rather than implementation details.
+- NEVER use 'else' statements.
+- NEVER use single letter variable names, not even in for loops. Use clear, descriptive, preferably two words minimal names, but carefully avoid overly verbose names.
+- Variables names MUST convey the intention or purpose rather than describing their content, avoiding unnecessary synonyms.
+- Variable names SHOULD reflect the primary flow, not conditional outcomes.
+- Prefer value objects as custom primitive types rather than classes when possible.
+- Boolean variables SHOULD start with "Is", "Should", "Has" etc prefixes.
+- Use PascalCase format for the entire error message whenever possible.
+- Prefer "Fail", "Error", "Invalid" suffixes instead of "FailedTo", "Cannot", "UnableTo" prefixes.
+- Prefer "Read" prefix or "Factory" suffix instead of "Get" suffix.
+- Prefer suffixes instead of prefixes for class and method names to preserve alphabetical order context.
+- Use mechanism-describing nouns like Builder, Parser, or Factory as method name suffixes instead of action verbs prefixes.
+- Avoid redundant prefixes in class attribute names when the context is already clear from the class name or surrounding code.
+- Class attributes SHOULD be ordered by importance, followed by alphabetical order.
+- Class required attributes SHOULD be placed before optional attributes.
+- Watch for repeated creation of identical classes or configurations inside loops to avoid unnecessary allocations and improve performance.
+- Prefer using Map and Set instead of Object and Array. Convert them to Object and Array only when necessary.
+- Prefer keeping lines under 85 characters when possible, but can exceed when necessary.
+- Avoid unnecessary line breaks, especially in simple struct initializations that can fit on a single line while remaining readable.

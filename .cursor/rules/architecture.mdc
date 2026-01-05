@@ -1,0 +1,26 @@
+---
+name: architecture
+description: Architecture and domain constraints for this codebase. Apply these rules when designing or modifying domain models, use cases, infrastructure, or cross-cutting concerns.
+alwaysApply: false
+---
+
+## Layered Architecture (DDD + Clean)
+- Follow strict **DDD + Clean Architecture** with `src/domain`, `src/infra`, `src/presentation`.
+- **Domain** (`src/domain`): Pure business logic only (entities, value objects, DTOs, use cases). Immutable, technology-agnostic "WHAT".
+- **Infrastructure** (`src/infra`): External dependencies only (DB, APIs, third-party libs). Technology-specific "HOW".
+- **Presentation** (`src/presentation`): Entry points only (controllers, routes, agents). Orchestrates via dependency injection.
+
+## Dependency Inversion
+- Dependencies flow **inward only**: Presentation > Infra > Domain.
+- Domain NEVER imports or references Infra or Presentation.
+- Presentation injects Infra implementations into Domain use cases via interfaces.
+- Infra implements Domain-defined repository/service interfaces.
+
+## Domain Rules
+- Value objects accept unknown directly without the need for pre-assertion.
+- Value objects, infrastructure, and use cases (with complex logic) MUST have unit tests.
+- When a use case or utility has multiple related auxiliary functions, they SHOULD be grouped under a struct.
+
+## Use Case Rules
+- During delete operations, validate all constraints upfront rather than discovering them mid-operation.
+- Auxiliary methods SHOULD be ordered according to their appearance/call order in the main method, not alphabetically or by perceived importance.

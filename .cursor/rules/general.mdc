@@ -1,0 +1,9 @@
+---
+name: general
+description: General engineering constraints that MUST be respected for any code generation, refactoring, or code review in this repository. Apply these rules whenever reasoning about features, scope, or implementation decisions.
+alwaysApply: false
+---
+
+- NEVER create features that weren't explicitly requested, even if they seem like useful additions.
+- Ambiguity SHOULD always be questioned as it generates doubts about the intention of the developer.
+- Prefer native methods over third-party libraries when possible.
