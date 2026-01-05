@@ -12,6 +12,8 @@ Text here.
 ## Rules
 Overview of all rules organized by responsibility.
 
+_*Some rules were inspired by the `AGENTS.md` from the [goinfinite/tk](https://github.com/goinfinite/tk/blob/main/docs/AGENTS.md) repository.*_ 
+
 ### File Structure
 | File | Purpose | When Applied | Description |
 | -- | -- | -- | -- |
