@@ -10,7 +10,6 @@
 # OPTIONS:
 # -Help, -h 	Show this help message
 # -ProjectPath 	Path to the project
-# -DocsPath    	Path to the docs directory
 # -Silent 		Do not output any message
 # -Overwrite 	Overwrite the existing directory
 
@@ -18,7 +17,6 @@
 param(
 	[switch]$Help = $false,
 	[string]$ProjectPath = (Get-Location).Path,
-	[string]$DocsPath = (Join-Path $ProjectPath "src/docs"),
 	[switch]$Silent = $false,
 	[switch]$Overwrite = $false
 )
@@ -38,7 +36,6 @@ with the principles of Domain-Driven Development + Clean Architecture.
 OPTIONS:
   -Help, -h     Show this help message
   -ProjectPath  Path to the project (default: current directory)
-  -DocsPath    	Path to the docs directory (default: src/docs)
   -Silent       Do not output any message (default: false)
   -Overwrite    Overwrite the existing directory (default: false)"
 	exit 0
@@ -72,23 +69,15 @@ else {
 	Write-Log "  📁 Source directory already exists!" "Yellow"
 }
 
-$layerNameWithIcons = [ordered]@{
-	"Domain"       = "📖"
-	"Infra"        = "⚙️"
-	"Presentation" = "📡"
-}
-$layerNames = $layerNameWithIcons.Keys
-
-foreach ($layerName in $layerNames) {
+foreach ($layerName in @("Domain", "Infra", "Presentation")) {
 	$layerPath = Join-Path $srcPath $layerName.ToLower()
-	$icon = $layerNameWithIcons[$layerName]
 	
 	if (-not (Test-Path $layerPath)) {
 		New-Item -ItemType Directory -Path $layerPath -Force | Out-Null
-		Write-Log "  $icon $layerName layer created successfully!" "Green"
+		Write-Log "  📐 $layerName layer created successfully!" "Green"
 	}
  else {
-		Write-Log "  $icon $layerName layer already exists!" "Yellow"
+		Write-Log "  📐 $layerName layer already exists!" "Yellow"
 	}
 }
 
@@ -119,14 +108,14 @@ foreach ($subdir in $domainSubdirs.Keys) {
 }
 
 # Summary (apenas se não for no-output)
-Write-Log "`n📁 Structure:" "Cyan"
-Write-Log "  📁 Domain" "Cyan"
+Write-Log "`nStructure:" "Cyan"
+Write-Log "  📖 Domain" "Cyan"
 Write-Log "	 $($PSStyle.Italic)Pure business logic only (entities, value objects, DTOs, use cases).$($PSStyle.Reset)"
 Write-Log "	 $($PSStyle.Italic)Immutable, technology-agnostic 'WHAT'.$($PSStyle.Reset)"
-Write-Log "  📁 Infrastructure" "Cyan"
+Write-Log "  ⚙️ Infrastructure" "Cyan"
 Write-Log "	 $($PSStyle.Italic)External dependencies only (DB, APIs, third-party libs).$($PSStyle.Reset)"
 Write-Log "	 $($PSStyle.Italic)Technology-specific 'HOW'.$($PSStyle.Reset)"
-Write-Log "  📁 Presentation" "Cyan"
+Write-Log "  📡 Presentation" "Cyan"
 Write-Log "	 $($PSStyle.Italic)Entry points only (controllers, routes, agents).$($PSStyle.Reset)"
 Write-Log "	 $($PSStyle.Italic)Orchestrates via dependency injection.$($PSStyle.Reset)"
 
