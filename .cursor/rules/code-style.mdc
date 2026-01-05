@@ -1,6 +1,6 @@
 ---
 name: code-style
-description: Code style and formatting rules for this codebase. Apply these rules to all code generation, refactoring, or formatting across TypeScript, JavaScript, configuration files, and documentation.
+description: Code style and formatting rules for this codebase. Apply these rules to all code generation, refactoring, or formatting TypeScript code.
 alwaysApply: false
 ---
 
@@ -23,3 +23,4 @@ alwaysApply: false
 - Prefer using Map and Set instead of Object and Array. Convert them to Object and Array only when necessary.
 - Prefer keeping lines under 85 characters when possible, but can exceed when necessary.
 - Avoid unnecessary line breaks, especially in simple struct initializations that can fit on a single line while remaining readable.
+- NEVER export functions, except when they are helpers. Prefer exporting classes, one per file.
