@@ -7,7 +7,7 @@ nomes e com seus atributos especificados por tabelas.
 
 **Observação:** Atributos com asterisco são obrigatórios.
 
-### User
+### User (exemplo)
 | Nome | Tipo | Notas |
 | -- | -- | -- |
 | id* | UserId | Deve se comportar como um ObjectId. |
@@ -20,7 +20,7 @@ nomes e com seus atributos especificados por tabelas.
 Todos os use cases que irão compor o projeto estarão listados aqui, divididos por headings com seus respectivos
 nomes e com seu fluxo detalhado em passos.
 
-### CreateUser
+### CreateUser (exemplo)
 1. Verificar se já existe um usuário com as credenciais fornecidas (`User.name` e `User.mailAddress`).
     1.1 Caso exista, retornar erro `UserAlreadyExists`.
 2. Enviar o `User.password` para o repositório responsável pelo salt de senhas para criar o hash da senha.
