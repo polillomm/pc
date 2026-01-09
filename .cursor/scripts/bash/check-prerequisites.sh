@@ -18,6 +18,12 @@ PROJECT_PATH="$(pwd)"
 SILENT=false
 OVERWRITE=false
 
+SCRIPT_DIR="$(CDPATH="" cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck disable=SC1091
+source "$SCRIPT_DIR/utils.sh"
+
+reset
+
 for arg in "$@"; do
     case "$arg" in
         --help|-h)
@@ -30,11 +36,10 @@ Manages the creation of the necessary directories and files to ensure that the a
 with the principles of Domain-Driven Development + Clean Architecture.
 
 OPTIONS:
-  -h, --help        Show this help message
-  -p, --project     Path to the project (default: current directory)
-  -d, --docs        Path to the docs directory (default: src/docs)
-  -s, --silent      Do not output any message (default: false)
-  -o, --overwrite   Overwrite the existing directory (default: false)
+  -h, --help             Show this help message
+  -p, --project-path     Path to the project (default: current directory)
+  -s, --silent           Do not output any message (default: false)
+  -o, --overwrite        Overwrite the existing directory (default: false)
 EOF
             exit 0
             ;;
@@ -58,10 +63,6 @@ EOF
     esac
 done
 
-SCRIPT_DIR="$(CDPATH="" cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# shellcheck disable=SC1091
-source "$SCRIPT_DIR/utils.sh"
-
 # Validate project path
 [ ! -d "${PROJECT_PATH}" ] && write_log "❌ Project path does not exist: ${PROJECT_PATH}" Red 1
 
@@ -72,12 +73,12 @@ SRC_PATH="${PROJECT_ROOT_PATH}/src"
 if [ -d "${SRC_PATH}" ]; then
   SRC_CONTENT_COUNT=$(find "${SRC_PATH}" -mindepth 1 -not -name '.gitkeep' | wc -l)
   
-  [ "${SRC_CONTENT_COUNT}" -gt 0 ] && [ "${OVERWRITE}" -eq 0 ] && {
+  [ "${SRC_CONTENT_COUNT}" -gt 0 ] && [ "${OVERWRITE}" = "false" ] && {
     write_log "Cannot proceed! Source directory already contains content." Red 1
     write_log "Use --overwrite to override, or remove content manually." Red 1
   }
   
-  write_log "⚠️  Deleting existing source directory content..." Yellow
+  write_log "⚠️ Deleting existing source directory content...\n" Yellow
   rm -rf "${SRC_PATH}"
 fi
 
@@ -86,7 +87,7 @@ write_log "🚀 Setting up repository structure..." Magenta
 mkdir -p "${SRC_PATH}"
 write_log "  📁 Source directory created successfully!" Green
 
-for layer in @("Domain", "Infra", "Presentation"); do
+for layer in "Domain" "Infra" "Presentation"; do
   layer_path="${SRC_PATH}/$(echo "${layer}" | tr '[:upper:]' '[:lower:]')"
   
   if [ ! -d "${layer_path}" ]; then
@@ -124,16 +125,14 @@ for subdir in "${!DOMAIN_SUBDIRS[@]}"; do
 done
 
 # Structure summary
-write_log ""
-write_log "📁 Structure:" Cyan
-write_log "  � Domain" Cyan
-write_log "    Pure business logic only (entities, value objects, DTOs, use cases)." Cyan
-write_log "    Immutable, technology-agnostic 'WHAT'." Cyan
-write_log "  ⚙️ Infrastructure" Cyan
-write_log "    External dependencies only (DB, APIs, third-party libs)." Cyan
-write_log "    Technology-specific 'HOW'." Cyan
-write_log "  � Presentation" Cyan
-write_log "    Entry points only (controllers, routes, agents)." Cyan
-write_log "    Orchestrates via dependency injection." Cyan
-write_log ""
-write_log "🎉 Repository structure ready!" Magenta
+write_log "\n📁 Structure:" Cyan
+write_log "  📦 Domain" Cyan
+write_log "     \033[3mPure business logic only (entities, value objects, DTOs, use cases).\033[0m"
+write_log "     \033[3mImmutable, technology-agnostic 'WHAT'.\033[0m"
+write_log "  📦 Infrastructure" Cyan
+write_log "     \033[3mExternal dependencies only (databases, APIs, third-party libs).\033[0m"
+write_log "     \033[3mTechnology-specific 'HOW'.\033[0m"
+write_log "  📦 Presentation" Cyan
+write_log "     \033[3mEntry points only (controllers, routes, agents).\033[0m"
+write_log "     \033[3mOrchestrates via dependency injection.\033[0m"
+write_log "\n🎉 Repository structure ready!" Magenta

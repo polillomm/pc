@@ -81,7 +81,6 @@ foreach ($layerName in @("Domain", "Infra", "Presentation")) {
 	}
 }
 
-# Domain subdirs (seu código original)
 $domainPath = Join-Path $srcPath "domain"
 $domainSubdirs = [ordered]@{
 	"dto"         = "# DTOs (Data Transfer Objects)
@@ -107,15 +106,14 @@ foreach ($subdir in $domainSubdirs.Keys) {
 	$domainSubdirs[$subdir] | Out-File -FilePath (Join-Path $subdirPath ".gitkeep") -Encoding UTF8
 }
 
-# Summary (apenas se não for no-output)
 Write-Log "`nStructure:" "Cyan"
-Write-Log "  📖 Domain" "Cyan"
+Write-Log "  📦 Domain" "Cyan"
 Write-Log "	 $($PSStyle.Italic)Pure business logic only (entities, value objects, DTOs, use cases).$($PSStyle.Reset)"
 Write-Log "	 $($PSStyle.Italic)Immutable, technology-agnostic 'WHAT'.$($PSStyle.Reset)"
-Write-Log "  ⚙️ Infrastructure" "Cyan"
-Write-Log "	 $($PSStyle.Italic)External dependencies only (DB, APIs, third-party libs).$($PSStyle.Reset)"
+Write-Log "  📦 Infrastructure" "Cyan"
+Write-Log "	 $($PSStyle.Italic)External dependencies only (databases, APIs, third-party libs).$($PSStyle.Reset)"
 Write-Log "	 $($PSStyle.Italic)Technology-specific 'HOW'.$($PSStyle.Reset)"
-Write-Log "  📡 Presentation" "Cyan"
+Write-Log "  📦 Presentation" "Cyan"
 Write-Log "	 $($PSStyle.Italic)Entry points only (controllers, routes, agents).$($PSStyle.Reset)"
 Write-Log "	 $($PSStyle.Italic)Orchestrates via dependency injection.$($PSStyle.Reset)"
 
