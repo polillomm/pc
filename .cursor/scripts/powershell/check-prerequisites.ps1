@@ -23,8 +23,6 @@ param(
 
 . "$PSScriptRoot/utils.ps1"
 
-Clear-Host
-
 if ($Help) {
 	Write-Log "Usage: check-prerequisites.ps1 [OPTIONS]
 

@@ -22,8 +22,6 @@ SCRIPT_DIR="$(CDPATH="" cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck disable=SC1091
 source "$SCRIPT_DIR/utils.sh"
 
-reset
-
 for arg in "$@"; do
     case "$arg" in
         --help|-h)
