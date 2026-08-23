@@ -1,6 +1,6 @@
 # User Identity & Security
 [user]
-    name = Matheus, M. P.                       # Author name displayed on commits
+    name = polillomm                            # Author name displayed on commits
     email = matheus_polillo@proton.me           # Author email displayed on commits
     signingkey = ~/.ssh/id_ed25519.pub          # Path to SSH public key used for commit signing
 [gpg]
