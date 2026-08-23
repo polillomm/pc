@@ -1,0 +1,56 @@
+# User Identity & Security
+[user]
+    name = Matheus, M. P.                       # Author name displayed on commits
+    email = matheus_polillo@proton.me           # Author email displayed on commits
+    signingkey = ~/.ssh/id_ed25519.pub          # Path to SSH public key used for commit signing
+[gpg]
+    format = ssh                                # Use SSH keys for signing instead of GPG keys
+[commit]
+    gpgsign = true                              # Automatically sign all commits
+[credential]
+    helper = store                              # Store credentials on disk to avoid re-typing passwords
+
+# Core & System Preferences
+[init]
+    defaultBranch = main                        # Set default branch name for 'git init'
+[core]
+    editor = zed --wait                         # Set Zed as default editor (waits for window close)
+    autocrlf = input                            # Convert CRLF to LF on commit (prevents Windows line-ending issues)
+
+# Remote Synchronization & Git Workflows
+[push]
+    autoSetupRemote = true                      # Automatically track upstream branch on first push
+    default = current                           # Push current branch to remote branch with the same name
+    followTags = true                           # Automatically push tags along with commits
+[pull]
+    rebase = true                               # Rebase local commits on top of incoming commits during pull
+[fetch]
+    prune = true                                # Remove references to remote branches that were deleted
+[rebase]
+    autoStash = true                            # Auto-stash local changes before rebasing and re-apply after
+    autoSquash = true                           # Auto-apply fixup! and squash! commits during interactive rebase
+[rerere]
+    enabled = true                              # Reuse recorded resolution of previous conflict merges
+    autoUpdate = true                           # Stage automatically resolved conflict files
+
+# Diff & Merge Conflict Resolution
+[merge]
+    conflictstyle = zdiff3                      # Display common ancestor code in conflict markers
+[diff]
+    colorMoved = default                        # Highlight moved code blocks differently from new/deleted lines
+
+# Terminal UI & Quality of Life
+[branch]
+    sort = -committerdate                       # Sort branch lists by most recent commit date
+[column]
+    ui = auto                                   # Display branch/tag lists in neat columns
+[help]
+    autocorrect = prompt                        # Suggest correct command on typos and ask before executing
+
+# Custom Shortcuts
+[alias]
+    st = status -s                              # Compact status view
+    co = checkout                               # Quick checkout shortcut
+    br = branch                                 # Quick branch shortcut
+    ci = commit                                 # Quick commit shortcut
+    lg = log --oneline --graph --decorate --all # Compact, visual commit history tree
