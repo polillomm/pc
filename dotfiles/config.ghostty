@@ -1,0 +1,21 @@
+# Cursor
+cursor-color = cell-foreground           # Sets the cursor color to match the text color of the cell it is currently hovering over
+cursor-style = bar                       # Changes the cursor shape to a vertical line/bar (instead of a solid block or underline)
+cursor-text = #ffffff                    # Sets the color of the text underneath the cursor to white (useful if you switch back to a block cursor)
+
+# Notification
+notify-on-command-finish = unfocused     # Triggers a notification when a long-running command finishes, but only if the terminal window is in the background (unfocused)
+notify-on-command-finish-action = notify # Tells the terminal to send a system-level desktop notification when the above condition is met
+
+# Position
+quick-terminal-position = center         # Spawns the quick terminal (dropdown/scratchpad terminal) in the exact center of the screen
+
+# Shell
+shell-integration = bash                 # Injects Ghostty's shell integrations (like prompt marking, working directory tracking) specifically for the Bash shell
+shell-integration-features = sudo        # Enables specific integration features, such as properly tracking shell state even when executing commands via 'sudo'
+
+# Theme
+theme = Banana Blueberry                 # Applies the "Banana Blueberry" color palette scheme to the terminal background and text
+title = Cockpit                          # Overrides the default window title and sets it statically to "Cockpit"
+window-theme = system                    # Makes the window decorations (title bar, borders) follow your OS's current light or dark mode preference
+window-vsync = false                     # Disables Vertical Sync (V-Sync); this can decrease input latency/lag, though it might cause minor screen tearing
